@@ -1,4 +1,5 @@
 import os
+import datetime
 import subprocess
 print "-----------------------------------------------\n\r"
 print "-------CUSTOM SHELL - BARRY BURKE -C13427078---\n\r"
@@ -13,8 +14,9 @@ def pwcmd(options):
 
 
 def datecmd(options):
-        print "date +%Y%m%d%H%M%S"
-
+        i = datetime.datetime.now()
+        date = "{0}{1}{2}{3}{4}{5}".format(i.year,i.month,i.day,i.hour,i.minute,i.second)
+        print date
 
 def ifccmd(options):
         if len(options)>1:
@@ -25,7 +27,15 @@ def ifccmd(options):
 
 
 def udcmd(options):
-        print "in udcmd"
+        usernm = subprocess.check_output(['whoami'])
+        userid = subprocess.check_output(['id -u user'],shell=True)
+        groupid = subprocess.check_output(['id -g user'],shell=True)
+        groupmain = subprocess.check_output(['groups user'],shell=True)
+        groupmain = groupmain.split(' ')
+        groupmain = groupmain[0]
+        inode = subprocess.check_output(['ls -id'])
+        print (groupmain)
+        print (inode)
 
 while (1==1):
         user = subprocess.check_output(['whoami'])
