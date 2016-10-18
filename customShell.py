@@ -28,9 +28,9 @@ def ifccmd(options):
 
 def udcmd(options):
         usernm = subprocess.check_output(['whoami'])
-        userid = subprocess.check_output(['id -u user'],shell=True)
-        groupid = subprocess.check_output(['id -g user'],shell=True)
-        groupmain = subprocess.check_output(['groups user'],shell=True)
+        userid = subprocess.check_output(['id' '-u' '{0}'.format(usernm)])
+        groupid = subprocess.check_output(['id','-g','{0}'.format(usernm)],shell=True)
+        groupmain = subprocess.check_output(['groups', '{0}'.format(usernm)],shell=True)
         groupmain = groupmain.split(' ')
         groupmain = groupmain[0]
         inode = subprocess.check_output(['ls -id'])
