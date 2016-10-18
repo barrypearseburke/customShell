@@ -10,7 +10,7 @@ allowedCmds ={"help":"help","pw":"pwcmd","ifc":"ifccmd","ud":"udcmd","dt":"datec
 def help(options):
     print("Available cmds {0}".format(key for key, value in allowedCmds.iteritems() ))
 def pwcmd(options):
-        print "pwd"
+        os.system( "pwd")
 
 
 def datecmd(options):
@@ -20,23 +20,24 @@ def datecmd(options):
 
 def ifccmd(options):
         if len(options)>1:
-                print "ifconfig {0}".format(options[1])
+                os.system( "ifconfig {0}".format(options[1]))
         else:
-                print "ifconfig eth0"
+                os.system( "ifconfig eth0")
 
 
 
 def udcmd(options):
         usernm = subprocess.check_output(['whoami'])
-        userid = subprocess.check_output(['id' '-u' '{0}'.format(usernm)])
-        groupid = subprocess.check_output(['id','-g','{0}'.format(usernm)],shell=True)
-        groupmain = subprocess.check_output(['groups', '{0}'.format(usernm)],shell=True)
+        usernm = usernm.strip("\r\n")
+        userid = subprocess.check_output(['id', '-u', '{0}'.format(usernm)])
+        userid = userid.strip("\r\n")
+        groupid = subprocess.check_output(['id','-g', '{0}'.format(usernm)])
+        groupid = groupid.strip("\r\n")
+        groupmain = subprocess.check_output(['groups', '{0}'.format(usernm)])
         groupmain = groupmain.split(' ')
-        groupmain = groupmain[0]
-        inode = subprocess.check_output(['ls -id'])
-        print (groupmain)
-        print (inode)
-
+        groupmain = groupmain[2] #username,: and then first group.
+        inode = subprocess.check_output(['ls', '-id'])
+        print("{0},{1},{2},{3},{4}".format(userid,groupid,usernm,groupmain,inode))
 while (1==1):
         user = subprocess.check_output(['whoami'])
         user=user.strip("\r\n")
@@ -47,7 +48,7 @@ while (1==1):
         options = UserInput.split(' ')
         for key, value in allowedCmds.iteritems():
                 if options[0] == key:
-                        print "fxn going to be called {0}".format(key)
+                        #print "fxn going to be called {0}".format(key)
                         eval(value +"({0})".format(options))
 
 
