@@ -32,7 +32,7 @@ print "-----------------------------------------------\n\r"
 print "-------CUSTOM SHELL - BARRY BURKE -C13427078---\n\r"
 print "------- GIVE US FULL MARKS THERE --------------\n\r"
 
-allowedCmds = {"help": "help", "pw": "pwcmd", "ifc": "ifccmd", "ud": "udcmd", "dt": "datecmd",'whatishere':'ls','newfile':'newfile','Quickmail':'sendmail',"logout":'logout','mkdir':'mkdir','clear':'cls','cls':'cls'}
+allowedCmds = {"help": "help", "pw": "pwcmd", "ifc": "ifccmd", "ud": "udcmd", "dt": "datecmd",'whatishere':'ls','newfile':'newfile','quickmail':'sendmail',"logout":'logout','mkdir':'mkdir','clear':'cls','cls':'cls'}
 
 
 def help(options):
@@ -87,7 +87,7 @@ def pwcmd(options):
     os.system("pwd")
 
 def ls(options):
-    if options ==1:
+    if len(options)==1:
         os.system('ls')
     else:
         os.system('ls -R|grep {0}'.format(options[1]))
@@ -98,12 +98,12 @@ def sendmail(options):
     :param options: None
     :return: 1 failure ;0 success
     """
-    fromadd = raw_input("Your email")
-    passwd = raw_input('Your password')
-    towhom = raw_input('To whom')
-    subject = raw_input('Subject')
-    body =  raw_input('body of email')
-    send = raw_input('Will i send email \r\n from:{0}\r\n to:{1}\r\nSubject{2}\r\n{3} \r\n y/n'.format(fromadd,towhom,subject,body))
+    fromadd = raw_input("Your email: ")
+    passwd = raw_input('Your password: ')
+    towhom = raw_input('To whom: ')
+    subject = raw_input('Subject: ')
+    body =  raw_input('body of email: ')
+    send = raw_input('Will I send this email \r\nfrom:{0}\r\nto:{1}\r\nSubject:{2}\r\nbody:{3}\r\ny/n?'.format(fromadd,towhom,subject,body))
     if send.lower() == 'y':
         print("Sending Email. Please Wait")
         returnvalue  =sendemail(fromadd,passwd,towhom,subject,body)
@@ -138,11 +138,16 @@ def sendemail(fromadd,pw,to,subject,body):
 
     body = body
     msg.attach(MIMEText(body, 'plain'))
-    smtp = re.search('@[\w]+',fromadd).group()[1:]
+    try:
+        smtp = re.search('@[\w]+',fromadd).group()[1:]
+    except:
+        print "looks like you didnt give us a propper email there..."
+        return 1
     try:
         server = smtplib.SMTP(smtpservers[smtp], 587)
     except:
-        raise "domain not found"
+        print("here, want to check them details")
+        return 1
     server.starttls()
     server.login(fromaddr, pw)
     text = msg.as_string()
@@ -202,8 +207,17 @@ while (1 == 1):
     hostname = hostname.strip("\r\n")
     userprompt = ("{0}@{1}:>".format(user, hostname))
     UserInput = raw_input(userprompt)
-    options = UserInput.split(' ')
-    for key, value in allowedCmds.iteritems():
-        if options[0] == key:
-            # print "fxn going to be called {0}".format(key)
-            eval(value + "({0})".format(options))
+    if UserInput == 'ifconfig' or UserInput == 'pwd':
+        print("sorry, You know {0} isent suppose to work,Next question...".format(UserInput))
+    else:
+        options = UserInput.split(' ')
+        last = len(allowedCmds) - 1
+        i =0
+        for key, value in allowedCmds.iteritems():
+            if options[0] == key:
+                # print "fxn going to be called {0}".format(key)
+                eval(value + "({0})".format(options))
+                i = -1
+            if i == last:
+                print ("i dont have a clue whats going on, but\'{0}\'makes no sense to me. Try re-entering the command".format(options[0]))
+            i =i+1
