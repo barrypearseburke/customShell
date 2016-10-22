@@ -1,4 +1,4 @@
-#!usr/bin/python
+#!/usr/bin/python
 import os
 import datetime
 import subprocess
@@ -51,10 +51,10 @@ def logout(options):
     """
     Logouts a user
     :param options: Not used
-    :return: 0- logouts currently active user -1 failure
+    :return: 0- logout currently active user -1 failure
     """
     try:
-        os.system("logout")
+        os.system("exit")
         return 0
     except:
         return 1
