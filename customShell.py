@@ -32,10 +32,13 @@ print "-----------------------------------------------\n\r"
 print "-------CUSTOM SHELL - BARRY BURKE -C13427078---\n\r"
 print "------- GIVE US FULL MARKS THERE --------------\n\r"
 
-allowedCmds = {"help": "help", "pw": "pwcmd", "ifc": "ifccmd", "ud": "udcmd", "dt": "datecmd",'whatishere':'ls','newfile':'newfile','quickmail':'sendmail',"logout":'logout','mkdir':'mkdir','clear':'cls','cls':'cls'}
+allowedCmds = {"help": "help", "pw": "pwcmd", "ifc": "ifccmd",
+               "ud": "udcmd", "dt": "datecmd",'whatishere':'ls',
+               'newfile':'newfile','quickmail':'sendmail',
+               "logout":'logout','mkdir':'mkdir','clear':'cls','cls':'cls'}
 
 
-def help(options):
+def help(*args):
     """
     Displays all available commands
     :param options: Not used
@@ -47,7 +50,7 @@ def help(options):
             return 0
     except:
         return 1
-def logout(options):
+def logout(*args):
     """
     Logouts a user
     :param options: Not used
@@ -92,7 +95,7 @@ def ls(options):
     else:
         os.system('ls -R|grep {0}'.format(options[1]))
 
-def sendmail(options):
+def sendmail(*args):
     """
     Prompts users for email details
     :param options: None
@@ -157,7 +160,7 @@ def sendemail(fromadd,pw,to,subject,body):
     return  0
 
 
-def datecmd(options):
+def datecmd(*args):
     """
 
     :param options: None
@@ -181,7 +184,7 @@ def ifccmd(options):
         os.system("ifconfig eth0")
 
 
-def udcmd(options):
+def udcmd(*args):
     """
     Prints userID, groupID, username, Main groupname, iNode of users home directory.
     :param options: None
@@ -199,25 +202,27 @@ def udcmd(options):
     inode = subprocess.check_output(['ls', '-id'])
     print("{0},{1},{2},{3},{4}".format(userid, groupid, usernm, groupmain, inode))
 
-
-while (1 == 1):
-    user = subprocess.check_output(['whoami'])
-    user = user.strip("\r\n")
-    hostname = subprocess.check_output(['hostname'])
-    hostname = hostname.strip("\r\n")
-    userprompt = ("{0}@{1}:>".format(user, hostname))
-    UserInput = raw_input(userprompt)
-    if UserInput == 'ifconfig' or UserInput == 'pwd':
-        print("sorry, You know {0} isent suppose to work,Next question...".format(UserInput))
-    else:
-        options = UserInput.split(' ')
-        last = len(allowedCmds) - 1
-        i =0
-        for key, value in allowedCmds.iteritems():
-            if options[0] == key:
-                # print "fxn going to be called {0}".format(key)
-                eval(value + "({0})".format(options))
-                i = -1
-            if i == last:
-                print ("i dont have a clue whats going on, but\'{0}\'makes no sense to me. Try re-entering the command".format(options[0]))
-            i =i+1
+def main():
+    while (1 == 1):
+        user = subprocess.check_output(['whoami'])
+        user = user.strip("\r\n")
+        hostname = subprocess.check_output(['hostname'])
+        hostname = hostname.strip("\r\n")
+        userprompt = ("{0}@{1}:>".format(user, hostname))
+        UserInput = raw_input(userprompt)
+        if UserInput == 'ifconfig' or UserInput == 'pwd':
+            print("sorry, You know {0} isent suppose to work,Next question...".format(UserInput))
+        else:
+            options = UserInput.split(' ')
+            last = len(allowedCmds) - 1
+            i =0
+            for key, value in allowedCmds.iteritems():
+                if options[0] == key:
+                    # print "fxn going to be called {0}".format(key)
+                    eval(value + "({0})".format(options))
+                    i = -1
+                if i == last:
+                    print ("i dont have a clue whats going on, but\'{0}\'makes no sense to me. Try re-entering the command".format(options[0]))
+                i =i+1
+if __name__ =='__main__':
+    main()
