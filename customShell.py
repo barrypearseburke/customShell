@@ -1,4 +1,4 @@
-#!usr/bin/python
+#!/usr/bin/python
 import os
 import datetime
 import subprocess
@@ -67,10 +67,10 @@ def ls(*args):
     :type args: list
     :param args:  element [1] as the with characters to search -Grep search
     """
-    if len(options)==1:
+    if len(*args)==1:
         os.system('ls')
     else:
-        os.system('ls -R|grep {0}'.format(options[1]))
+        os.system('ls -R|grep {0}'.format(args[1]))
 
 def sendmail(*args):
     """
@@ -153,7 +153,7 @@ def ifccmd(*args):
     :param args: list[1] with the interface you want. if unsupplied, eth0 result returned
     :return:
     """
-    if len(options) > 1:
+    if len(*args) > 1:
         os.system("ifconfig {0}".format(args[1]))
     else:
         os.system("ifconfig eth0")
@@ -175,25 +175,28 @@ def udcmd(*args):
     inode = subprocess.check_output(['ls', '-id'])
     print("{0},{1},{2},{3},{4}".format(userid, groupid, usernm, groupmain, inode))
 
+def main():
+    while (1 == 1):
+        user = subprocess.check_output(['whoami'])
+        user = user.strip("\r\n")
+        hostname = subprocess.check_output(['hostname'])
+        hostname = hostname.strip("\r\n")
+        userprompt = ("{0}@{1}:>".format(user, hostname))
+        UserInput = raw_input(userprompt)
+        if UserInput == 'ifconfig' or UserInput == 'pwd':
+            print("Sorry, You know {0} isent suppose to work,Next question...".format(UserInput))
+        else:
+            options = UserInput.split(' ')
+            last = len(allowedCmds) - 1
+            i =0
+            for key, value in allowedCmds.iteritems():
+                if options[0] == key:
+                    # print "fxn going to be called {0}".format(key)
+                    eval(value + "({0})".format(options))
+                    i = -1
+                if i == last:
+                    print ("i dont have a clue whats going on, but \'{0}\' makes no sense to me. Try re-entering the command".format(options[0]))
+                i =i+1
 
-while (1 == 1):
-    user = subprocess.check_output(['whoami'])
-    user = user.strip("\r\n")
-    hostname = subprocess.check_output(['hostname'])
-    hostname = hostname.strip("\r\n")
-    userprompt = ("{0}@{1}:>".format(user, hostname))
-    UserInput = raw_input(userprompt)
-    if UserInput == 'ifconfig' or UserInput == 'pwd':
-        print("Sorry, You know {0} isent suppose to work,Next question...".format(UserInput))
-    else:
-        options = UserInput.split(' ')
-        last = len(allowedCmds) - 1
-        i =0
-        for key, value in allowedCmds.iteritems():
-            if options[0] == key:
-                # print "fxn going to be called {0}".format(key)
-                eval(value + "({0})".format(options))
-                i = -1
-            if i == last:
-                print ("i dont have a clue whats going on, but \'{0}\' makes no sense to me. Try re-entering the command".format(options[0]))
-            i =i+1
+if __name__ == '__main__':
+    main()
