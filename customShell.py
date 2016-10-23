@@ -149,7 +149,7 @@ def datecmd(*args):
 def ifccmd(*args):
     """
     if config with an allies.
-    :type args list
+    :type args list.
     :param args: list[1] with the interface you want. if unsupplied, eth0 result returned
     :return:
     """
