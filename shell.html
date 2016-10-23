@@ -1,0 +1,69 @@
+
+<!DOCT-----------------------------------------------
+
+-------CUSTOM SHELL - BARRY BURKE -C13427078---
+
+------- GIVE US FULL MARKS THERE --------------
+
+
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#aa55cc">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Modules</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#aa55cc"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><table width="100%" summary="list"><tr><td width="25%" valign=top><a href="https://docs.python.org/2/library/datetime.html">datetime</a><br>
+<a href="https://docs.python.org/2/library/email.encoders.html">email.encoders</a><br>
+</td><td width="25%" valign=top><a href="https://docs.python.org/2/library/os.html">os</a><br>
+<a href="https://docs.python.org/2/library/re.html">re</a><br>
+</td><td width="25%" valign=top><a href="https://docs.python.org/2/library/smtplib.html">smtplib</a><br>
+<a href="https://docs.python.org/2/library/subprocess.html">subprocess</a><br>
+</td><td width="25%" valign=top></td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#eeaa77">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Functions</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#eeaa77"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt><a name="-cls"><strong>cls</strong></a>(*args)</dt><dd><tt>Calls&nbsp;to&nbsp;cmd&nbsp;prompt&nbsp;to&nbsp;clear&nbsp;users&nbsp;screen</tt></dd></dl>
+ <dl><dt><a name="-datecmd"><strong>datecmd</strong></a>(*args)</dt><dd><tt>Prints&nbsp;the&nbsp;date&nbsp;in&nbsp;the&nbsp;format&nbsp;yyyymmddhhmmss<br>
+:param&nbsp;args:&nbsp;None</tt></dd></dl>
+ <dl><dt><a name="-file"><strong>file</strong></a>(options)</dt><dd><tt>:type&nbsp;options:&nbsp;list<br>
+:param&nbsp;options:&nbsp;send&nbsp;in&nbsp;a&nbsp;list&nbsp;with&nbsp;the&nbsp;item&nbsp;1&nbsp;as&nbsp;the&nbsp;name&nbsp;of&nbsp;the&nbsp;directory<br>
+:return:&nbsp;0&nbsp;for&nbsp;success&nbsp;;1&nbsp;for&nbsp;failure</tt></dd></dl>
+ <dl><dt><a name="-help"><strong>help</strong></a>(*args)</dt><dd><tt>Displays&nbsp;all&nbsp;available&nbsp;commands<br>
+:return:&nbsp;0&nbsp;-&nbsp;Prints&nbsp;available&nbsp;commands&nbsp;to&nbsp;screen&nbsp;successful;1&nbsp;failure</tt></dd></dl>
+ <dl><dt><a name="-ifccmd"><strong>ifccmd</strong></a>(*args)</dt><dd><tt>if&nbsp;config&nbsp;with&nbsp;an&nbsp;allies.<br>
+:type&nbsp;args&nbsp;list.<br>
+:param&nbsp;args:&nbsp;list[1]&nbsp;with&nbsp;the&nbsp;interface&nbsp;you&nbsp;want.&nbsp;if&nbsp;unsupplied,&nbsp;eth0&nbsp;result&nbsp;returned<br>
+:return:</tt></dd></dl>
+ <dl><dt><a name="-ls"><strong>ls</strong></a>(*args)</dt><dd><tt>:type&nbsp;args:&nbsp;list<br>
+:param&nbsp;args:&nbsp;&nbsp;element&nbsp;[1]&nbsp;as&nbsp;the&nbsp;with&nbsp;characters&nbsp;to&nbsp;search&nbsp;-Grep&nbsp;search</tt></dd></dl>
+ <dl><dt><a name="-main"><strong>main</strong></a>()</dt></dl>
+ <dl><dt><a name="-pwcmd"><strong>pwcmd</strong></a>(*args)</dt><dd><tt>Prints&nbsp;Working&nbsp;directory</tt></dd></dl>
+ <dl><dt><a name="-sendemail"><strong>sendemail</strong></a>(fromadd, pw, to, subject, body)</dt><dd><tt>Sends&nbsp;email&nbsp;to&nbsp;given&nbsp;address&nbsp;from&nbsp;given&nbsp;address.&nbsp;For&nbsp;Google,&nbsp;you&nbsp;must&nbsp;allow&nbsp;less&nbsp;secure&nbsp;apps.&nbsp;Function&nbsp;auto&nbsp;detects&nbsp;domain&nbsp;and&nbsp;set&nbsp;smtp&nbsp;server<br>
+only&nbsp;works&nbsp;for&nbsp;gmails,&nbsp;hotmnail/outlook,&nbsp;Mydit&nbsp;and&nbsp;dit&nbsp;domains.<br>
+:type&nbsp;fromadd:&nbsp;string<br>
+:param&nbsp;fromadd:&nbsp;Your&nbsp;Email&nbsp;Address<br>
+:type&nbsp;pw:&nbsp;string<br>
+:param&nbsp;pw:&nbsp;Your&nbsp;email&nbsp;password<br>
+:type&nbsp;to:&nbsp;string<br>
+:param&nbsp;to:&nbsp;The&nbsp;email&nbsp;address&nbsp;you&nbsp;want&nbsp;to&nbsp;send&nbsp;to<br>
+:type&nbsp;body:&nbsp;String<br>
+:param&nbsp;subject:&nbsp;The&nbsp;subject&nbsp;line&nbsp;of&nbsp;the&nbsp;email<br>
+:type&nbsp;body:&nbsp;String<br>
+:param&nbsp;body:Body&nbsp;of&nbsp;the&nbsp;email<br>
+:return:&nbsp;1&nbsp;for&nbsp;success.</tt></dd></dl>
+ <dl><dt><a name="-sendmail"><strong>sendmail</strong></a>(*args)</dt><dd><tt>Prompts&nbsp;users&nbsp;for&nbsp;email&nbsp;details<br>
+:return:&nbsp;1&nbsp;failure&nbsp;;0&nbsp;success</tt></dd></dl>
+ <dl><dt><a name="-udcmd"><strong>udcmd</strong></a>(*args)</dt><dd><tt>Prints&nbsp;userID,&nbsp;groupID,&nbsp;username,&nbsp;Main&nbsp;groupname,&nbsp;iNode&nbsp;of&nbsp;users&nbsp;home&nbsp;directory.</tt></dd></dl>
+</td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#55aa55">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Data</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#55aa55"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><strong>allowedCmds</strong> = {'clear': 'cls', 'cls': 'cls', 'dt': 'datecmd', 'file': 'file', 'help': 'help', 'ifc': 'ifccmd', 'pw': 'pwcmd', 'quickmail': 'sendmail', 'ud': 'udcmd', 'whatishere': 'ls'}</td></tr></table>
+</body></html>
