@@ -211,7 +211,7 @@ def main():
         userprompt = ("{0}@{1}:>".format(user, hostname))
         UserInput = raw_input(userprompt)
         if UserInput == 'ifconfig' or UserInput == 'pwd':
-            print("sorry, You know {0} isent suppose to work,Next question...".format(UserInput))
+            print("Sorry, You know {0} isn't suppose to work,Next question...".format(UserInput))
         else:
             options = UserInput.split(' ')
             last = len(allowedCmds) - 1
@@ -222,7 +222,7 @@ def main():
                     eval(value + "({0})".format(options))
                     i = -1
                 if i == last:
-                    print ("i dont have a clue whats going on, but\'{0}\'makes no sense to me. Try re-entering the command".format(options[0]))
+                    print ("I dont have a clue whats going on, but\'{0}\'makes no sense to me. Try re-entering the command".format(options[0]))
                 i =i+1
 if __name__ =='__main__':
     main()
