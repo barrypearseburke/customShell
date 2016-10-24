@@ -39,9 +39,10 @@ def help(*args):
     :return: 0 - Prints available commands to screen successful;1 failure
     """
     try:
+        print "Here are all the commands you can run"
         for key, value in allowedCmds.iteritems():
             print key
-            return 0
+        return 0
     except:
         return 1
 
@@ -55,6 +56,7 @@ def file(options):
         os.system('nano {0}'.format(options[1]))
         return 0
     except:
+        print "no filename supplied"
         return 1
 def pwcmd(*args):
     """
@@ -67,10 +69,10 @@ def ls(*args):
     :type args: list
     :param args:  element [1] as the with characters to search -Grep search
     """
-    if len(*args)==1:
+    if len(args[0])==1:
         os.system('ls')
     else:
-        os.system('ls -R|grep {0}'.format(args[1]))
+        os.system('ls -R|grep {0}'.format(args[0][1]))
 
 def sendmail(*args):
     """
@@ -153,8 +155,8 @@ def ifccmd(*args):
     :param args: list[1] with the interface you want. if unsupplied, eth0 result returned
     :return:
     """
-    if len(*args) > 1:
-        os.system("ifconfig {0}".format(args[1]))
+    if len(args[0]) > 1:
+        os.system("ifconfig {0}".format(args[0][1]))
     else:
         os.system("ifconfig eth0")
 
@@ -170,6 +172,7 @@ def udcmd(*args):
     groupid = subprocess.check_output(['id', '-g', '{0}'.format(usernm)])
     groupid = groupid.strip("\r\n")
     groupmain = subprocess.check_output(['groups', '{0}'.format(usernm)])
+    groupmain = groupmain.strip("\r\n")
     groupmain = groupmain.split(' ')
     groupmain = groupmain[2]  # username,: and then first group.
     inode = subprocess.check_output(['ls', '-id'])
